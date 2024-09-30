@@ -1,4 +1,5 @@
 import { SORT_ORDER } from "../constants/index.js";
+// import { sortFields } from "../models/contact.js";
 
 const parseSortOrder = (sortOrder) => {
     const isKnownOrder = [SORT_ORDER.ASC, SORT_ORDER.DESC].includes(sortOrder);
@@ -8,6 +9,7 @@ const parseSortOrder = (sortOrder) => {
 };
 
 const parseSortBy = (sortBy) => {
+
     const keysOfContact = ['id',];
 
     if (keysOfContact.includes(sortBy)) {
@@ -17,8 +19,9 @@ const parseSortBy = (sortBy) => {
 };
 
 
+
 export const parseSortParams = (query) => {
-    const { sortOrder, sortBy } = query;
+    const { sortOrder, sortBy, } = query;
 
     const parsedSortOrder = parseSortOrder(sortOrder);
     const parsedSortBy = parseSortBy(sortBy);

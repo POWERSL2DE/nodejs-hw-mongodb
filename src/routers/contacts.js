@@ -15,11 +15,15 @@ import { contactAddSchema, contactPatchSchema } from '../validation/contactsVali
 const router = Router();
 
 router.get('/contacts', ctrlWrapper(getContactsController));
+
 router.get('/contacts/:contactId', isValidId, ctrlWrapper(getContactByIdController));
+
 router.post('/contacts', validateBody(contactAddSchema), ctrlWrapper(addContactController));
-router.delete('/contacts/:contactId', isValidId, ctrlWrapper(deleteContactController));
+
 router.put('/contacts/:contactId', isValidId, validateBody(contactAddSchema), ctrlWrapper(upsertContactController));
+
 router.patch('/contacts/:contactId', isValidId, validateBody(contactPatchSchema), ctrlWrapper(patchContactController));
 
+router.delete('/contacts/:contactId', isValidId, ctrlWrapper(deleteContactController));
 
 export default router;

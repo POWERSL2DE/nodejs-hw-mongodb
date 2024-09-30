@@ -35,4 +35,6 @@ const contactSchema = new Schema(
 
 );
 
+export const sortFields = ['name', 'phoneNumber', 'email', 'isFavourite', 'contactType',];
+
 export const ContactCollection = model('contact', contactSchema);

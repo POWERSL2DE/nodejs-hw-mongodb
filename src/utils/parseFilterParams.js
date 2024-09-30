@@ -11,8 +11,8 @@ const parseType = (type) => {
 const parseIsFavourite = (value) => {
     if(typeof value !== 'string') return;
 
-    if(value.toLowerCase() === 'true' || value === '1') return true;
-    if(value.toLowerCase() === 'false' || value === '0') return  false;
+    if(value === 'true' || value === '1') return true;
+    if(value === 'false' || value === '0') return  false;
 
     return;
 };
