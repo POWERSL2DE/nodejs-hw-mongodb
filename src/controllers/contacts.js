@@ -1,29 +1,41 @@
-import { getAllContacts, getContactById } from '../services/contacts.js';
 import createHttpError from 'http-errors';
+
+import { getAllContacts, getContactById } from '../services/contacts.js';
 import { addContact } from '../services/contacts.js';
 import { deleteContact } from '../services/contacts.js';
 import { updateContact } from '../services/contacts.js';
 
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+import { parseSortParams } from '../utils/parseSortParams.js';
+import { parseContactFilterParams } from '../utils/parseFilterParams.js';
+
+
 export const getContactsController = async (req, res) => {
-    const contacts = await getAllContacts();
+    const { page, perPage} = parsePaginationParams(req.query);
+    const { sortBy, sortOrder } = parseSortParams(req.query);
+    const filter = parseContactFilterParams(req.query);
+
+    const contacts = await getAllContacts({
+        page,
+        perPage,
+        sortBy,
+        sortOrder,
+        filter,
+    });
+
+
 
     res.status(200).json({
         status: 200,
         message: 'Contacts are successfully found!',
         data: contacts,
+
     });
 };
 
 export const getContactByIdController = async (req, res, next) => {
     const { contactId } = req.params;
     const contact = await getContactById(contactId);
-
-
-    // if (!contact) {
-    //     return res.status(404).json({
-    //       message: 'Contact not found',
-    //     });
-    //   }
 
     if (!contact) {
         throw createHttpError(404, `Contact with id ${contactId} is not found`);
@@ -93,5 +105,6 @@ export const deleteContactController = async (req, res) => {
 
     res.status(204).send();
 };
+
 
 
