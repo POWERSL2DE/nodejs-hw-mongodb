@@ -3,6 +3,7 @@ import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 import { SORT_ORDER } from '../constants/index.js';
 
 
+
 export const getAllContacts = async ({
   page = 1,
   perPage = 10,
@@ -49,8 +50,8 @@ export const getContactById = async (contactId) => {
 };
 
 
-export const addContact = async (playload) => {
-  const contact = await ContactCollection.create(playload);
+export const addContact = async (payload) => {
+  const contact = await ContactCollection.create(payload);
   return contact;
 };
 
@@ -63,10 +64,10 @@ export const deleteContact = async (contactId) => {
 };
 
 
-export const updateContact = async (contactId, playload, options = {}) => {
+export const updateContact = async (contactId, payload, options = {}) => {
     const rawResult = await ContactCollection.findOneAndUpdate(
     { _id: contactId },
-    playload,
+    payload,
     {
       new: true,
       includeResultMetadata: true,

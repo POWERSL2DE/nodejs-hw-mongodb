@@ -3,10 +3,10 @@ import cors from "cors";
 import pino from 'pino-http';
 import dotenv from 'dotenv';
 import { env } from "./utils/env.js";
-import contactsRouter from './routers/contacts.js';
+import router from './routers/index.js';
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
-
+import cookieParser from 'cookie-parser';
 
 
 dotenv.config();
@@ -26,10 +26,11 @@ export const setupServer = () => {
         }),
     );
 
-    app.use(contactsRouter);
+    app.use(router);
 
     app.use(notFoundHandler);
     app.use(errorHandler);
+    app.use(cookieParser());
 
 
     app.listen(PORT, () => {
