@@ -46,8 +46,8 @@ export const getAllContacts = async ({
 };
 
 
-export const getContactById = async (contactId, userId) => {
-  const contact = await ContactCollection.findById({
+export const getContactById = async ({contactId, userId}) => {
+  const contact = await ContactCollection.findOne({
     _id: contactId,
     userId,
   });
@@ -55,13 +55,13 @@ export const getContactById = async (contactId, userId) => {
 };
 
 
-export const addContact = async (payload) => {
-  const contact = await ContactCollection.create(payload);
+export const addContact = async ({payload}) => {
+  const contact = await ContactCollection.create({payload});
   return contact;
 };
 
 
-export const deleteContact = async (contactId, userId) => {
+export const deleteContact = async ({contactId, userId}) => {
   const contact = await ContactCollection.findOneAndDelete({
     _id: contactId,
     userId,
