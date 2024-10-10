@@ -61,18 +61,18 @@ export const addContact = async ({payload}) => {
 };
 
 
-export const deleteContact = async ({_id: contactId, userId}) => {
+export const deleteContact = async ({_id, userId}) => {
   const contact = await ContactCollection.findOneAndDelete({
-    _id: contactId,
+    _id,
     userId,
   });
   return contact;
 };
 
 
-export const updateContact = async ({_id: contactId, userId}, payload, options = {}) => {
+export const updateContact = async ({_id, userId}, payload, options = {}) => {
     const rawResult = await ContactCollection.findOneAndUpdate(
-    { _id: contactId, userId },
+    { _id, userId },
     payload,
     {
       new: true,
