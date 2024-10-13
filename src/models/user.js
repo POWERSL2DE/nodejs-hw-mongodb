@@ -15,7 +15,6 @@ const usersSchema = new Schema(
             type: String,
             required: true,
         },
-
     },
 
     {

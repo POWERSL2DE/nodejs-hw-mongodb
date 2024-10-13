@@ -137,7 +137,7 @@ export const requestResetToken = async (email) => {
             html,
         });
     } catch {
-        throw createHttpError(500, 'Failed to send the email, please try again');
+        throw createHttpError(500, 'Failed to send the email, please try again or later');
     }
 };
 
