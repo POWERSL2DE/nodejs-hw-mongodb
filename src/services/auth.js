@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken';
 
 import { SMTP } from "../constants/index.js";
 import { env } from "../utils/env.js";
-import { sendEmail } from "../utils/sendMail.js";
+import { sendMail } from "../utils/sendMail.js";
 
 import handlebars from 'handlebars';
 import path from 'node:path';
@@ -130,14 +130,16 @@ export const requestResetToken = async (email) => {
     });
 
     try {
-        await sendEmail({
+        await sendMail({
             from: env(SMTP.SMTP_FROM),
             to: email,
             subject: 'Reset your password',
             html,
         });
-    } catch {
-        throw createHttpError(500, 'Failed to send the email, please try again or later');
+    } catch (error) {
+        throw createHttpError(500, 'Failed to send the email, please try again or later', {errors: error.details,}),
+        console.log(2),
+        console.log(error);
     }
 };
 
