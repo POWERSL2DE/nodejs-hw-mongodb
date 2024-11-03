@@ -131,6 +131,10 @@
                     "description": "Updated contact's email",
                     "example": "naziksl2de@gmail.com"
                   },
+                  "isFavourite": {
+                    "type": "boolean",
+                    "example": true
+                  },
                   "contactType": {
                     "type": "string",
                     "enum": [
@@ -251,7 +255,6 @@
                 "required": [
                   "name",
                   "phoneNumber",
-                  "email",
                   "contactType"
                 ],
                 "properties": {
@@ -269,6 +272,10 @@
                     "description": "Contact's email",
                     "type": "string",
                     "example": "naziksl2de@gmail.com"
+                  },
+                  "isFavourite": {
+                    "type": "boolean",
+                    "example": true
                   },
                   "contactType": {
                     "description": "Number type",
