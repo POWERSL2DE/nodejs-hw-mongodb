@@ -28,6 +28,7 @@ requestBody:
             type: string
             example: 'naziksl2de@gmail.com'
           isFavourite:
+            description: 'Favorite contact'
             type: 'boolean'
             example: true
           contactType:
