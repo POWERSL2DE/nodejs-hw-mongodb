@@ -38,12 +38,6 @@ parameters:
       enum: ['work', 'home', 'personal']
       example: 'work'
     description: 'Filter contacts by contact type'
-  - in: query
-    name: name
-    schema:
-      type: string
-    example: 'John'
-    description: 'Filter contacts by name'
 responses:
   '200':
     description: Successfully retrieved contacts
